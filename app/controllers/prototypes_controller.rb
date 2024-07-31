@@ -11,6 +11,7 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.new
   end
 
+
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
@@ -26,6 +27,9 @@ class PrototypesController < ApplicationController
   end
 
   def edit
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 
   def update
